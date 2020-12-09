@@ -18,19 +18,23 @@ const createScene = () => {
     'light',
     new BABYLON.Vector3(1, 1, 0)
   )
+  const ground = createGround()
+  const box = createBox()
+  const roof = createRoof()
+  return scene
+}
 
-  //texture
-  const roofMat = new BABYLON.StandardMaterial('roofMat')
-  roofMat.diffuseTexture = new BABYLON.Texture('./texture/roof.jpg')
+const createBox = () => {
   const boxMat = new BABYLON.StandardMaterial('boxMat')
   boxMat.diffuseTexture = new BABYLON.Texture('./texture/wall.jpg')
-  const groundMat = new BABYLON.StandardMaterial('groundMat')
-  groundMat.diffuseTexture = new BABYLON.Texture('./texture/ground.jpg')
 
-  //mesh
   const box = BABYLON.MeshBuilder.CreateBox('box', {})
   box.position.y = 0.5
   box.material = boxMat
+}
+const createRoof = () => {
+  const roofMat = new BABYLON.StandardMaterial('roofMat')
+  roofMat.diffuseTexture = new BABYLON.Texture('./texture/roof.jpg')
 
   const roof = BABYLON.MeshBuilder.CreateCylinder('roof', {
     diameter: 1.3,
@@ -41,14 +45,17 @@ const createScene = () => {
   roof.scaling.x = 0.75
   roof.rotation.z = Math.PI / 2
   roof.position.y = 1.22
+}
+
+const createGround = () => {
+  const groundMat = new BABYLON.StandardMaterial('groundMat')
+  groundMat.diffuseTexture = new BABYLON.Texture('./texture/ground.jpg')
 
   const ground = BABYLON.MeshBuilder.CreateGround('ground', {
     width: 10,
     height: 10,
   })
   ground.material = groundMat
-
-  return scene
 }
 
 const scene = createScene() //Call the createScene function
