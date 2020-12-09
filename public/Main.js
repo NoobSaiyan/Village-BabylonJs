@@ -21,6 +21,9 @@ const createScene = () => {
   const ground = createGround()
   const box = createBox()
   const roof = createRoof()
+
+  const house = BABYLON.Mesh.MergeMeshes([box, roof])
+
   return scene
 }
 
@@ -43,6 +46,8 @@ const createBox = () => {
   })
   box.position.y = 0.5
   box.material = boxMat
+
+  return box
 }
 const createRoof = () => {
   const roofMat = new BABYLON.StandardMaterial('roofMat')
@@ -57,6 +62,8 @@ const createRoof = () => {
   roof.scaling.x = 0.75
   roof.rotation.z = Math.PI / 2
   roof.position.y = 1.22
+
+  return roof
 }
 
 const createGround = () => {
